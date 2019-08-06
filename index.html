@@ -25,12 +25,15 @@
         </nav>
 
         <div id="app" class="container">
-            <input type="text" id="expression-input">
-            <button class="waves-effect waves-light main-f-b">Generate Thruth Table</button>
+            <input type="text" id="expression-input" v-model="code">
+            <button class="waves-effect waves-light main-f-b" @click="run()">Generate Thruth Table</button>
         </div>
 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script type="text/javascript" src="index.js"></script>
+        <script type="text/javascript" src="LexicalAnalyzer.js"></script>
 
     </body>
 </html>
