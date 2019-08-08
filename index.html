@@ -24,15 +24,40 @@
             </div>
         </nav>
 
-        <!-- <div id="app" class="container">
-            <input type="text" id="expression-input" v-model="code">
+        <div id="app" class="container">
+            <input type="text" id="expression-input" v-model="code" readonly>
+            <div class="variables">
+                <center>
+                    <button @click="code += String.fromCharCode(64 + i)" class="waves-effect waves-light" v-for="i in 26" style="padding: 5px 9px; margin: 2px; border-radius: 20px;" >
+                        {{String.fromCharCode(64 + i)}}
+                    </button>
+                </center>
+            </div>
+            <hr>
+            <div class="operadores">
+                <center>
+                    <button @click="code += key" class="waves-effect waves-light" v-for="(i, key) in {'→': 'IF THEN', '↔' : 'IF CONDITIONAL', '∧' : 'AND', '∨' : 'OR', '⊕': 'XOR','(': '(',')': ')','¬': 'NEGATE'}" style="padding: 5px 9px; margin: 2px; border-radius: 20px;" >
+                        {{i}}
+                    </button>
+                </center>
+            </div>
+            <hr>
+            <center>
+            <button @click="code = code.substr(0, code.length - 1)" class="waves-effect waves-light" style="width:48%; padding: 5px 9px; margin: 2px; border-radius: 20px;" >
+                DELETE LAST
+            </button>
+            <button @click="code = ''" class="waves-effect waves-light" style="width:48%; padding: 5px 9px; margin: 2px; border-radius: 20px;" >
+                CLEAR TEXTBOX
+            </button>
+            </center>
+            <hr>
             <button class="waves-effect waves-light main-f-b" @click="run()">Generate Thruth Table</button>
-        </div> -->
+        </div>
 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-        <!-- <script type="text/javascript" src="index.js"></script> -->
+        <script type="text/javascript" src="index.js"></script>
         <script type="text/javascript" src="Compilador.js"></script>
 
     </body>

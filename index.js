@@ -5,12 +5,8 @@ var compilador = new Vue({
     },
     methods: {
         run: function(){
-            var analizadorLexico = new AnalizadorLexico(this.code)
-            console.log(analizadorLexico.analyze())
+            var _compilador = new Compilador();
+            console.log(_compilador.with(this.code).get())
         }
     }
 })
-
-var __throw = function(_){
-    console.log(_)
-}
