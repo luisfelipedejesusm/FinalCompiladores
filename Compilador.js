@@ -71,6 +71,7 @@ class Compilador{
     get(){
         if(this._validate()){
             var res = this._printVars()._printArrayP(this._getIndex(this.exp))._calcFunction(this.exp)
+            console.log(res)
             return {
                 vars: res.vars_array,
                 values: res.vars_r
@@ -236,7 +237,8 @@ class Compilador{
             }
         }
         for(var k of this.vars_negative){
-            this.vars_r[k] = this.vars_r[[...k][1]].reverse() // aqui va a dar algun problema
+            console.log(this.vars_r[[...k][1]])
+            this.vars_r[k] = this.vars_r[[...k][1]].slice(0).reverse() // aqui va a dar algun problema
         }
         return this.vars_negative
     }

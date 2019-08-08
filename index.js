@@ -2,7 +2,23 @@ var compilador = new Vue({
     el: '#app',
     data: {
         code: '',
-        results: null
+        results: null,
+        shortcuts: {
+            "_AND_": "∧",
+            '_OR_': '∨',
+            '_XOR_': '⊕',
+            '_IF THEN_': '→',
+            '_IF CONDITIONAL_': '↔',
+            '_NEGATE_': '¬',
+            '_NOT_': '¬'
+        }
+    },
+    watch: {
+        code: function(val){
+            if(val.match(/_.+?_/g)){
+                this.code = this.code.replace(/_.+?_/g, a=>this.shortcuts[a.toUpperCase()] || '')
+            }
+        }
     },
     methods: {
         focusinput: function(){
@@ -15,6 +31,7 @@ var compilador = new Vue({
                 return;
             }
             try{
+                // debugger
                 this.results = _compilador.with(this.code).get()
             }catch(e){
                 console.log(e)
