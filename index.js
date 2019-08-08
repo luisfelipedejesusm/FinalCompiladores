@@ -10,6 +10,7 @@ var compilador = new Vue({
             try{
                 this.results = _compilador.with(this.code).get()
             }catch(e){
+                this.results = null
                 M.toast({html: "Syntax Error", classes: 'danger-toast'})
             }
             if(typeof this.results == "string"){
