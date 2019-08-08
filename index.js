@@ -7,6 +7,10 @@ var compilador = new Vue({
     methods: {
         run: function(){
             var _compilador = new Compilador();
+            if(this.results == "" || this.results == null){
+                M.toast({html: "Unespecified Expression", classes: 'danger-toast'})
+                return;
+            }
             try{
                 this.results = _compilador.with(this.code).get()
             }catch(e){
