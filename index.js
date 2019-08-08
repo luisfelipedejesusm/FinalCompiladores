@@ -7,7 +7,7 @@ var compilador = new Vue({
     methods: {
         run: function(){
             var _compilador = new Compilador();
-            if(this.results == "" || this.results == null){
+            if(this.code == "" || this.code == null){
                 M.toast({html: "Unespecified Expression", classes: 'danger-toast'})
                 return;
             }
