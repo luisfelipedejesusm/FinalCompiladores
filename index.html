@@ -36,7 +36,7 @@
             <hr>
             <div class="operadores">
                 <center>
-                    <button @click="code += key" class="waves-effect waves-light" v-for="(i, key) in {'→': 'IF THEN', '↔' : 'IF CONDITIONAL', '∧' : 'AND', '∨' : 'OR', '⊕': 'XOR','(': '(',')': ')','¬': 'NEGATE'}" style="padding: 5px 9px; margin: 2px; border-radius: 20px;" >
+                    <button @click="code += key" class="waves-effect waves-light" v-for="(i, key) in {'∧' : 'AND', '∨' : 'OR', '⊕': 'XOR', '→': 'IF THEN', '↔' : 'IF CONDITIONAL', '¬': 'NEGATE', '(': '(',')': ')'}" style="padding: 5px 9px; margin: 2px; border-radius: 20px;" >
                         {{i}}
                     </button>
                 </center>
@@ -52,6 +52,25 @@
             </center>
             <hr>
             <button class="waves-effect waves-light main-f-b" @click="run()">Generate Thruth Table</button>
+
+            <div class="table" v-if="results && results.vars" style="margin: 50px 0">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th v-for="h in results.vars">
+                                {{h}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(r, i) in results.values[results.vars[0]]">
+                            <td v-for="g in results.vars" :style="{background: results.values[g.split` `.join``][i]? '#4caf50' : '#f44336'}">
+                                {{results.values[g.split` `.join``][i]? "T" : "F"}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
 

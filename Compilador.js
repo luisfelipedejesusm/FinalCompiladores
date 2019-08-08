@@ -10,7 +10,7 @@ class Compilador{
         this.specialChars = ["→", "↔", "∧", "∨", "⊕"]
     }
     with(code){
-        this.exp = code.replace(/ /g, '')
+        this.exp = code.replace(/ /g, '').replace(/¬¬/g, '')
         return this
     }
     _validate(){
