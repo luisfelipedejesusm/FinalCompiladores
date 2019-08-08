@@ -5,6 +5,9 @@ var compilador = new Vue({
         results: null
     },
     methods: {
+        focusinput: function(){
+            document.getElementById('expression-input').focus()
+        },
         run: function(){
             var _compilador = new Compilador();
             if(this.code == "" || this.code == null){
@@ -14,6 +17,7 @@ var compilador = new Vue({
             try{
                 this.results = _compilador.with(this.code).get()
             }catch(e){
+                console.log(e)
                 this.results = null
                 M.toast({html: "Syntax Error", classes: 'danger-toast'})
             }

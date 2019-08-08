@@ -18,11 +18,19 @@ class Compilador{
             this.error_msg = "Expression not specified"
         }
         if(this.exp.match(/[^a-zA-Z)(→↔¬∧∨⊕]/g)){
-            this.error_msg = "Expression contains not supported chars"
+            var char = this.exp.match(/[^a-zA-Z)(→↔¬∧∨⊕]/g)[0]
+            var pos = this.exp.indexOf(char)
+            this.error_msg = `ERROR: Unrecognizable Token [ ${char} ]. ( Column ${pos} )`
             return false
         }
-        if(this._continuousOperators() || this._continuousLetter()){
-            this.error_msg = "Invalid Expression"
+        var p = this._continuousOperators()
+        if(p){
+            this.error_msg = `ERROR: Expression can not contain continuous operators. [ ${p.char} ] found more than once in column ${p.pos}`
+            return false
+        }
+        p = this._continuousLetter()
+        if(p){
+            this.error_msg = `ERROR: Expression can not contain continuous operands. [ ${p.char} ] found more than once in column ${p.pos}`
             return false
         }
         if(this._checkParentheses()){
@@ -35,7 +43,7 @@ class Compilador{
         var temp = [...this.exp]
         for(var k in temp){
             if(this.specialChars.includes(temp[~~k]) && this.specialChars.includes(temp[~~k-1])){
-                return true
+                return {pos: k, char: temp[~~k]}
             }
         }
         return false
@@ -45,7 +53,7 @@ class Compilador{
         for(var k in temp){
             if(~~k == 0) continue;
             if(temp[~~k].match(/[A-Za-z]/g) && temp[~~k-1].match(/[A-Za-z]/g)){
-                return true
+                return {pos: k, char: temp[~~k]}
             }
         }
         return false

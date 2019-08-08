@@ -25,10 +25,10 @@
         </nav>
 
         <div id="app" class="container">
-            <input type="text" id="expression-input" v-model="code" readonly>
+            <input type="text" id="expression-input" v-model="code">
             <div class="variables">
                 <center>
-                    <button @click="code += String.fromCharCode(64 + i)" class="waves-effect waves-light" v-for="i in 26" style="padding: 5px 9px; margin: 2px; border-radius: 20px;" >
+                    <button @click="code += String.fromCharCode(64 + i); focusinput()" class="waves-effect waves-light" v-for="i in 26" style="padding: 5px 9px; margin: 2px; border-radius: 20px;" >
                         {{String.fromCharCode(64 + i)}}
                     </button>
                 </center>
@@ -36,7 +36,7 @@
             <hr>
             <div class="operadores">
                 <center>
-                    <button @click="code += key" class="waves-effect waves-light" v-for="(i, key) in {'∧' : 'AND', '∨' : 'OR', '⊕': 'XOR', '→': 'IF THEN', '↔' : 'IF CONDITIONAL', '¬': 'NEGATE', '(': '(',')': ')'}" style="padding: 5px 9px; margin: 2px; border-radius: 20px;" >
+                    <button @click="code += key; focusinput()" class="waves-effect waves-light" v-for="(i, key) in {'∧' : 'AND', '∨' : 'OR', '⊕': 'XOR', '→': 'IF THEN', '↔' : 'IF CONDITIONAL', '¬': 'NEGATE', '(': '(',')': ')'}" style="padding: 5px 9px; margin: 2px; border-radius: 20px;" >
                         {{i}}
                     </button>
                 </center>
